@@ -1,0 +1,57 @@
+clear all;
+clc;
+
+[Signal,Fs]= audioread('pcm mono 16 bit 8kHz.wav'); 
+info = audioinfo('pcm mono 16 bit 8kHz.wav');
+
+size_of_block=int32(2^6);
+
+Signal=cat(1,Signal,zeros(5536,1));
+
+Fs=info.SampleRate;
+L = length(Signal);
+t = info.Duration*linspace(0,1,L);
+f = Fs/2*linspace(0,1,L/2+1);
+
+[fft_coeff,fft_real_part,fft_img_part]=fft_floating_point(Signal,size_of_block);
+
+
+input=fft_coeff;
+block_size=33;
+
+
+
+%dlmwrite('Coeficientes.csv',fft_coeff);
+
+
+
+% ft = dsp.FFT;
+% % 
+% mag_full_fft=abs(full_fft);
+% %sound(Signal,fs);   
+% %%%%%%%%%%%%% GRAFICANDO %%%%%%%%%%%%% 
+% % 
+% figure
+% subplot(3,1,1) % se utiliza el comando subplot para hacer graficos con mas de un sector
+% plot(t,Signal); % graficando la señal en el dominio de los samples de tiempo
+% title('Señal en el tiempo');
+% xlabel('Tiempo (s)');
+% ylabel('Amplitud');
+% xlim([0 info.Duration]);
+% grid on;
+% % %  
+% subplot(3,1,2)
+% plot(abs(fft_coeff), 'red'); % graficando la mitad de la señal en el dominiode los samples de la frecuencia
+% %plot(mag_full_fft);
+% title('Mitad del espectro de la señal');
+% xlabel('Frecuencia (Hz)');
+% ylabel('Magnitud');
+% grid on;
+
+% subplot(3,1,3)
+% f = Fs*linspace(0,1,L);
+% plot(f,abs(fft(Signal)),'blue'); % graficando la mitad de la señal en el dominiode los samples de la frecuencia
+% title('Espectro completo de la señal');
+% xlabel('Frecuencia (Hz)');
+% ylabel('Magnitud');
+% grid on;
