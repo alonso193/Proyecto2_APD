@@ -59,7 +59,12 @@ void decompressor(char *fileName)
 
            count++;
         }
-        decoded[count] = '\0';
+        decoded[count] = '\n';
         fputs(decoded, outFile);
     }
+}
+int main(int argc, char const *argv[]) {
+    //compressor("../quantizer/outputSignedBinary.txt");
+    decompressor("outFile.txt");
+    return 0;
 }

@@ -16,7 +16,7 @@ int binToInt(char *cadenaBinaria, int longitud) {
 void compressor(char *fileName)
 {
     int lineCounter = 0;
-    char character[16];
+    char character[100];
     //open file as read only
     FILE *inFile = fopen (fileName, "r");
     FILE *outFile = fopen ("outFile.txt", "w");
@@ -33,6 +33,7 @@ void compressor(char *fileName)
     rewind(inFile);
     int lines = lineCounter - 1;
     for (int i = 0; i < lines; i++)
+    //for (int i = 0; i < 10; i++)
     {
         fgets(character, 100, inFile);
         //saving the sign bit
@@ -44,6 +45,7 @@ void compressor(char *fileName)
         for (int j = 0; j < magnitudeLenght; j++) {
             magnitude[j] = character[j+1];
         }
+        //printf("%c%s\n", sign,magnitude);
         int magDec = binToInt(magnitude, magnitudeLenght);
         //step2
         if (magDec > 32635)
@@ -54,7 +56,7 @@ void compressor(char *fileName)
             }
             magDec = 32635;
         }
-
+        //printf("%s\n", magnitude);
         /*
         step 3
         */
@@ -75,7 +77,7 @@ void compressor(char *fileName)
         }
         magnitude[count] = '\0';
         //printf("%s", character);
-        //printf("%s\n", magnitude);
+        //printf("%c%s\n", sign,magnitude);
         /*
         */
 
@@ -91,6 +93,7 @@ void compressor(char *fileName)
             if (exponent[m] == '1' && flag == 1) {
                 flag = 0;
                 p = 7 - m;
+                //printf("%d%d\n", p,m);
                 mantissaIndex = m;
             }
         }
@@ -99,10 +102,11 @@ void compressor(char *fileName)
         int mantissaCount = 0;
         //printf("%i\n", mantissaIndex);
         for (int n = mantissaIndex+1; n < (mantissaIndex+5); n++) {
-            mantissa[mantissaCount] = exponent[n];
+            mantissa[mantissaCount] = magnitude[n];
             mantissaCount++;
         }
         mantissa[mantissaCount] = '\0';
+        //printf("%s\n", mantissa);
         /*
         */
         char encoding[8];
@@ -124,8 +128,15 @@ void compressor(char *fileName)
             encoding[a+4] = mantissa[a];
         }
         encoding[8] = '\0';
-        fputs(encoding, outFile);
+        printf("%s\n", encoding);
+        //fputs(encoding, outFile);
     }
     fclose(outFile);
     fclose(inFile);
 }
+
+// int main(int argc, char const *argv[]) {
+//     //compressor("../quantizer/outputSignedBinary.txt");
+//     compressor("archivo.txt");
+//     return 0;
+// }
