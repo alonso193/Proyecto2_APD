@@ -10,10 +10,9 @@
 #include <stdlib.h>
 #define NEWLINE '\n'
 
-
-int binToInt(char *cadenaBinaria, int longitud) {
-  int decimal = 0;
-  int multiplicador = 1;
+short binToIntDeq(char *cadenaBinaria, int longitud) {
+  short decimal = 0;
+  short multiplicador = 1;
   char caracterActual;
   for (int i = longitud - 1; i >= 0; i--) {
     caracterActual = cadenaBinaria[i];
@@ -60,7 +59,7 @@ void dequantizer(char *fileName)
             magnitude[j] = character[j+1];
         }
         //printf("%s\n",magnitude);
-        int magDec = binToInt(magnitude, magnitudeLenght);
+        short magDec = binToIntDeq(magnitude, magnitudeLenght);
         if (sign == '1') {
             magDec *= -1;
         }
