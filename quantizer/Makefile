@@ -1,10 +1,10 @@
 COMPILER = gcc
-SRC = quantizer.c
+SRC = dequantizer.c
 BIN = ejecutable
 COMMANDS = clear
 FLAGS = -lm -o
 
-all: build clear run
+all: build clear run clean
 
 clear:
 	$(COMMANDS)

@@ -64,6 +64,8 @@ void dequantizer(char *fileName)
         if (sign == '1') {
             magDec *= -1;
         }
+        //printf("%d\n", magDec);
+        fwrite(&magDec, 2, 1, outFile);
     }
     //
     // while (feof(inFile) != 1)
@@ -93,6 +95,6 @@ void dequantizer(char *fileName)
 }
 
 int main(int argc, char const *argv[]) {
-    dequantizer("entradaAlDequantizer.txt");
+    dequantizer("../leyMu/coeffs.txt");
     return 0;
 }
