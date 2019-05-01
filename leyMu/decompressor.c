@@ -6,7 +6,7 @@ void decompressor(char *fileName)
     char character[16];
     //open file as read only
     FILE *inFile = fopen (fileName, "r");
-    FILE *outFile = fopen ("coeffs.txt", "w");
+    FILE *outFile = fopen ("coeffs_float.txt", "w");
     if (inFile == NULL)
     {
         printf("\nError de apertura del archivo. \n\n");
@@ -65,6 +65,6 @@ void decompressor(char *fileName)
 }
 int main(int argc, char const *argv[]) {
     //compressor("../quantizer/outputSignedBinary.txt");
-    decompressor("outFile.txt");
+    decompressor("coeff_float_compressed.txt");
     return 0;
 }

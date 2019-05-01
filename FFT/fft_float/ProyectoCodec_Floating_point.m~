@@ -21,34 +21,10 @@ for i=[1:1:length(fft_real_part)]
    full_fft(cnt+1)=fft_img_part(i);
    cnt=cnt+2;
 end
-format longG;
+format longEng;
 fileID = fopen('real.csv','w');
 
-fft_real_part_int = round(fft_real_part*10000);
-
-fprintf(fileID,'%i\n',fft_real_part_int);
-fclose(fileID);
-
-fileID = fopen('img.csv','w');
-
-fft_img_part_int = round(fft_img_part*10000);
-
-fprintf(fileID,'%i\n',fft_img_part_int);
-fclose(fileID);
-
-
-fileID = fopen('Coeficientes.csv','w');
-
-full_fft_int = round(full_fft*10000);
-
-fprintf(fileID,full_fft_int);
-fclose(fileID);
-
-fileID = fopen('Coeficientes.bin','w');
-
-fwrite(fileID,full_fft_int,'integer*2');
-
-fclose(fileID);
+fprintf(fileID,'%d\n',fft_real_part);
 
 Signal_recovered = ifft_floating_point(fft_coeff,33);
 
@@ -68,9 +44,9 @@ Signal_recovered = ifft_floating_point(fft_coeff,33);
 %     subplot(2,1,2)
 %     plot(info.Duration*linspace(0,1,length(Signal_recovered)),Signal_recovered,'red');
 %     title('Señal recuperada en el tiempo');
-    xlabel('Tiempo (s)');
-    ylabel('Amplitud');
-    xlim([0 info.Duration]);
-    grid on;
+%     xlabel('Tiempo (s)');
+%     ylabel('Amplitud');
+%     xlim([0 info.Duration]);
+%     grid on;
 
 

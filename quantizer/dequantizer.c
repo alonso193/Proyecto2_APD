@@ -14,7 +14,8 @@ short binToIntDeq(char *cadenaBinaria, int longitud) {
   short decimal = 0;
   short multiplicador = 1;
   char caracterActual;
-  for (int i = longitud - 1; i >= 0; i--) {
+  int i;
+  for (i = longitud - 1; i >= 0; i--) {
     caracterActual = cadenaBinaria[i];
     if (caracterActual == '1') {
       decimal += multiplicador;
@@ -30,7 +31,7 @@ void dequantizer(char *fileName)
     char character[17];
     //open file as read only
     FILE *inFile = fopen (fileName, "r");
-    FILE *outFile = fopen ("outCoeffDec.bin", "wb");
+    FILE *outFile = fopen ("outCoeffDec_float.bin", "wb");
     if (inFile == NULL)
     {
         printf("\nError de apertura del archivo. \n\n");
@@ -47,7 +48,8 @@ void dequantizer(char *fileName)
     }
     rewind(inFile);
     int lines = lineCounter - 1;
-    for (int i = 0; i < lines; i++){
+    int i;
+    for (i = 0; i < lines; i++){
         fgets(character, 100, inFile);
         //saving the sign bit
         //step 1
@@ -55,7 +57,8 @@ void dequantizer(char *fileName)
         int magnitudeLenght = 15;
         char magnitude[magnitudeLenght];
         //getting the magnitude
-        for (int j = 0; j < magnitudeLenght; j++) {
+        int j;
+        for (j = 0; j < magnitudeLenght; j++) {
             magnitude[j] = character[j+1];
         }
         //printf("%s\n",magnitude);
@@ -63,8 +66,8 @@ void dequantizer(char *fileName)
         if (sign == '1') {
             magDec *= -1;
         }
-        //printf("%d\n", magDec);
-        fwrite(&magDec, 2, 1, outFile);
+        printf("%d\n", magDec);
+        //fwrite(&magDec, 2, 1, outFile);
     }
     //
     // while (feof(inFile) != 1)
@@ -94,6 +97,6 @@ void dequantizer(char *fileName)
 }
 
 int main(int argc, char const *argv[]) {
-    dequantizer("../leyMu/coeffs.txt");
+    dequantizer("../leyMu/coeffs_float.txt");
     return 0;
 }

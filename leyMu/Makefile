@@ -1,5 +1,5 @@
 COMPILER = gcc
-SRC = quantizer.c compressor.c decompressor.c
+SRC = decompressor.c compressor.c
 BIN = ejecutable
 COMMANDS = clear
 FLAGS = -lm -o

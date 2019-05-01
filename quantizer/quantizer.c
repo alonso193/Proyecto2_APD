@@ -19,8 +19,8 @@ void quantizer()
 {
     int lineCounter = 0;
     char character[16];
-    FILE *in1 = fopen ("output_fft.bin", "rb");
-    FILE *out1 = fopen ("realCoeffsBin.txt", "w");
+    FILE *in1 = fopen ("../FFT/fft_float/Coeficientes.bin", "rb");
+    FILE *out1 = fopen ("realCoeffsBin_flota.txt", "w");
     FILE *in2 = fopen ("img.csv", "r");
     FILE *out2 = fopen ("imagCoeffsBin.txt", "w");
     if (in1 == NULL)
@@ -80,6 +80,6 @@ void quantizer()
 
 int main(int argc, char const *argv[]) {
     quantizer();
-    compressor("outputSignedBinary.txt");
+    //compressor("outputSignedBinary_float.txt");
     return 0;
 }

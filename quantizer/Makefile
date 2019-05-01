@@ -1,5 +1,5 @@
 COMPILER = gcc
-SRC = dequantizer.c
+SRC = dequantizer.c ../leyMu/compressor.c
 BIN = ejecutable
 COMMANDS = clear
 FLAGS = -lm -o

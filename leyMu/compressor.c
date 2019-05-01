@@ -135,8 +135,8 @@ void compressor(char *fileName)
     fclose(inFile);
 }
 
-// int main(int argc, char const *argv[]) {
-//     //compressor("../quantizer/outputSignedBinary.txt");
-//     compressor("archivo.txt");
-//     return 0;
-// }
+/* int main(int argc, char const *argv[]) {
+     compressor("../quantizer/coeff_quantized_float.txt");
+    //compressor("archivo.txt");
+    return 0;
+}*/
